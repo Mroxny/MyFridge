@@ -2,6 +2,8 @@ package com.mroxny.myfridge;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -19,9 +21,16 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     private Product product;
+    private LinearLayout layout;
     private FloatingActionButton addProductButton;
 
     @Override
@@ -32,46 +41,37 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product("Jajka"));
+        products.add(new Product("Mleko"));
+        products.add(new Product("Sos sojowy"));
+        products.add(new Product("Dżem"));
+        products.add(new Product("Szynka"));
+        products.add(new Product("Ser"));
+        products.add(new Product("Makaron"));
+        products.add(new Product("Ryż"));
+        products.add(new Product("Mydło"));
+
+
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new ProductAdapter(products);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+
         addProductButton = (FloatingActionButton) findViewById(R.id.add_product_button);
-        LinearLayout layout = findViewById(R.id.linearLayout);
-
-        product = new Product();
-        product.SetAmount(1);
-        product.SetName("Jajka");
-        product.SetId(1);
-
-        View productView = View.inflate(this,R.layout.product,layout);
-        TextView nameView = productView.findViewById(R.id.textView1);
-        nameView.setText(product.GetName());
-        TextView amountView = productView.findViewById(R.id.textView2);
-        amountView.setText(String.valueOf(product.GetAmount()));
-        Button inc = productView.findViewById(R.id.add_button);
-        Button dec = productView.findViewById(R.id.remove_button);
-
-        inc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                product.IncrementAmount();
-                amountView.setText(String.valueOf(product.GetAmount()));
-            }
-        });
-
-        dec.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                product.DecrementAmount();
-                amountView.setText(String.valueOf(product.GetAmount()));
-            }
-        });
-
         addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Dodaj produkt",Toast.LENGTH_SHORT).show();
+                createProduct();
             }
         });
+    }
 
-
+    public void createProduct() {
 
     }
 }

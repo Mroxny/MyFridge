@@ -23,15 +23,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AddProductDialog.ProductDialogListener{
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
-    private Product product;
-    private LinearLayout layout;
     private FloatingActionButton addProductButton;
+    ArrayList<Product> products = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,37 +39,37 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product("Jajka"));
-        products.add(new Product("Mleko"));
-        products.add(new Product("Sos sojowy"));
-        products.add(new Product("Dżem"));
-        products.add(new Product("Szynka"));
-        products.add(new Product("Ser"));
-        products.add(new Product("Makaron"));
-        products.add(new Product("Ryż"));
-        products.add(new Product("Mydło"));
-
-
-        mRecyclerView = findViewById(R.id.recyclerView);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ProductAdapter(products);
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
-
-
         addProductButton = (FloatingActionButton) findViewById(R.id.add_product_button);
         addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createProduct();
+                openAddProductDialog();
             }
         });
     }
 
-    public void createProduct() {
+    private void openAddProductDialog(){
+        AddProductDialog productDialog = new AddProductDialog();
+        productDialog.show(getSupportFragmentManager(),"product dialog");
 
     }
+
+    private void addProduct(String name) {
+        products.add(new Product(name));
+
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+
+        mAdapter = new ProductAdapter(products);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+    }
+
+    @Override
+    public void applyTexts(String name) {
+        addProduct(name);
+    }
+
 }

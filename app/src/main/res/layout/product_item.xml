@@ -28,7 +28,8 @@
             android:layout_marginBottom="10dp"
             android:layout_centerVertical="true"
             android:padding="2dp"
-            android:src="?attr/colorSecondary" />
+            android:src="@drawable/ic_fridge_icon"
+            app:tint="?attr/colorSecondary" />
 
         <TextView
             android:id="@+id/textView"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
@@ -9,5 +10,68 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nazwa" />
+
+    <TextView
+        android:id="@+id/wi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wybierz ikonę:"
+        android:layout_below="@+id/edit_name"
+        android:layout_marginTop="40dp"/>
+
+    <ScrollView
+        android:id="@+id/sw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wi"
+        android:layout_marginTop="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/icon1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_fridge_icon"
+                android:theme="@style/Button" />
+            <Button
+                android:id="@+id/icon2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_round_add" />
+            <Button
+                android:id="@+id/icon3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_round_add_product"
+                android:theme="@style/Button" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/wi2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wybrana ikona:"
+        android:layout_below="@+id/sw"
+        android:layout_marginTop="40dp"/>
+
+    <ImageView
+        android:id="@+id/tempIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/sw"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="35dp"
+        android:layout_toEndOf="@+id/wi2"
+        android:src="@drawable/ic_fridge_icon"
+        app:tint="?attr/colorSecondary" />
 
 </RelativeLayout>

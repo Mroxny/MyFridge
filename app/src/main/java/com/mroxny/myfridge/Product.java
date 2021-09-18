@@ -1,5 +1,9 @@
 package com.mroxny.myfridge;
 
+import android.graphics.drawable.Drawable;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 public class Product {
 
     private String id;
@@ -8,8 +12,9 @@ public class Product {
     private int imageResource;
     private String category;
 
-    public Product (String name){
+    public Product (String name, int iconResource){
         setName(name);
+        setImageResource(iconResource);
     }
 
     public void setId(int idNumber){
@@ -21,7 +26,6 @@ public class Product {
     }
 
     public void setName(String name){
-        //wprowadzic ograniczenie liczby znakow
         this.name = name;
     }
 

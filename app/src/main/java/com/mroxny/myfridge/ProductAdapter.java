@@ -35,6 +35,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public ProductAdapter(ArrayList<Product> exampleList) {
         mExampleList = exampleList;
     }
+
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_item, parent, false);
@@ -45,7 +46,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         Product currentItem = mExampleList.get(position);
         holder.icon.setImageResource(currentItem.getImageResource());
-        holder.name.setText(currentItem.getName());
+        holder.name.setText(correctName(currentItem.getName()));
         holder.amount.setText(String.valueOf(currentItem.getAmount()));
 
         setButtons(holder,currentItem);
@@ -54,6 +55,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public int getItemCount() {
         return mExampleList.size();
+    }
+
+    private String correctName(String name){
+        if (name != null && name.length()>0){
+            name = name.replace("\n", "").replace("\r", "");
+            if(name.length()>15){
+                name = name.substring(0,14) + "...";
+            }
+            return name;
+        }
+        name = "Nieznany proukt";
+        return name;
     }
 
     private void setButtons(ProductViewHolder holder, Product currentItem){

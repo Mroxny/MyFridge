@@ -46,6 +46,17 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
                 openAddProductDialog();
             }
         });
+
+        LoadProducts();
+    }
+
+    private void SaveProducts(){
+
+        
+    }
+
+    private void LoadProducts(){
+
     }
 
     private void openAddProductDialog(){
@@ -54,9 +65,13 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
 
     }
 
-    private void addProduct(String name) {
-        products.add(new Product(name));
+    private void addProduct(String name, int icon) {
+        products.add(new Product(name,icon));
+        SaveProducts();
+        addProductsToViewport();
+    }
 
+    private void addProductsToViewport(){
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
@@ -64,12 +79,21 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
         mAdapter = new ProductAdapter(products);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+    }
 
+    private String correctName(String name){
+        if (name != null && name.length()>0){
+            name = name.replace("\n", "").replace("\r", "");
+            return name;
+        }
+        name = "Nieznany proukt";
+        return name;
     }
 
     @Override
-    public void applyTexts(String name) {
-        addProduct(name);
+    public void applyTexts(String name, int icon) {
+        name = correctName(name);
+        addProduct(name,icon);
     }
 
 }

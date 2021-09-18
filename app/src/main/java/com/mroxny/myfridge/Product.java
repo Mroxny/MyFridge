@@ -4,13 +4,15 @@ import android.graphics.drawable.Drawable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.annotations.Expose;
+
 public class Product {
 
-    private String id;
-    private String name;
-    private int amount = 1;
-    private int imageResource;
-    private String category;
+    @Expose private String id;
+    @Expose private String name;
+    @Expose private int amount = 1;
+    @Expose private int imageResource;
+    @Expose private String category;
 
     public Product (String name, int iconResource){
         setName(name);

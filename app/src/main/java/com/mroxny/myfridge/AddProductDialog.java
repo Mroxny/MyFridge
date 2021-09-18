@@ -48,7 +48,7 @@ public class AddProductDialog extends AppCompatDialogFragment implements View.On
                             icon = image;
                         }
                         else{
-                            icon = R.drawable.ic_fridge_icon;
+                            icon = R.drawable.ic_round_default_icon;
                         }
 
 
@@ -79,7 +79,7 @@ public class AddProductDialog extends AppCompatDialogFragment implements View.On
         int icon = 0;
         switch (v.getId()) {
             case R.id.icon1:
-                icon = R.drawable.ic_fridge_icon;
+                icon = R.drawable.ic_round_default_icon;
                 break;
             case R.id.icon2:
                 icon = R.drawable.ic_round_add;

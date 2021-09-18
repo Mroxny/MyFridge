@@ -1,35 +1,37 @@
 package com.mroxny.myfridge;
 
-import androidx.annotation.RequiresApi;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.graphics.Color;
-import android.os.Build;
-import android.os.Bundle;
-import android.text.Layout;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements AddProductDialog.ProductDialogListener{
+
+    private static final String SHARED_PREFS_FILE = "shared_prefs";
+    private static final String SHARED_PREFS_PRODUCTS_KEY = "products";
+
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private FloatingActionButton addProductButton;
-    ArrayList<Product> products = new ArrayList<>();
+    private TextView noProductsSign;
+    private ArrayList<Product> products = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        mRecyclerView = findViewById(R.id.recyclerView);
+        noProductsSign = findViewById(R.id.no_products_sign);
+
         addProductButton = (FloatingActionButton) findViewById(R.id.add_product_button);
         addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,16 +52,37 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
             }
         });
 
-        LoadProducts();
+        loadProducts();
+        addProductsToViewport();
+
     }
 
-    private void SaveProducts(){
 
-        
+    private void saveProducts(){
+        Gson gson = gsonMaker();
+        Set<String> set = new HashSet<String>();
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        for(Product e: products){
+            set.add(gson.toJson(e,Product.class));
+        }
+
+        editor.putStringSet(SHARED_PREFS_PRODUCTS_KEY,set);
+        editor.apply();
     }
 
-    private void LoadProducts(){
+    private void loadProducts(){
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE);
+        Set<String> set = prefs.getStringSet(SHARED_PREFS_PRODUCTS_KEY,null);
+        Gson gson = gsonMaker();
 
+        products.clear();
+        if(set!=null) {
+            for (String e : set) {
+                products.add(gson.fromJson(e, Product.class));
+            }
+        }
     }
 
     private void openAddProductDialog(){
@@ -67,18 +93,23 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
 
     private void addProduct(String name, int icon) {
         products.add(new Product(name,icon));
-        SaveProducts();
+        saveProducts();
         addProductsToViewport();
     }
 
     private void addProductsToViewport(){
-        mRecyclerView = findViewById(R.id.recyclerView);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
+        if(products.size()>0) {
+            noProductsSign.setVisibility(View.GONE);
+            mRecyclerView.setHasFixedSize(true);
+            mLayoutManager = new LinearLayoutManager(this);
 
-        mAdapter = new ProductAdapter(products);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+            mAdapter = new ProductAdapter(products);
+            mRecyclerView.setLayoutManager(mLayoutManager);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+        else {
+            noProductsSign.setVisibility(View.VISIBLE);
+        }
     }
 
     private String correctName(String name){
@@ -90,10 +121,23 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
         return name;
     }
 
+    private Gson gsonMaker(){
+        GsonBuilder builder = new GsonBuilder();
+        builder.excludeFieldsWithoutExposeAnnotation();
+        builder.setPrettyPrinting();
+
+        return builder.create();
+    }
+
     @Override
     public void applyTexts(String name, int icon) {
         name = correctName(name);
         addProduct(name,icon);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveProducts();
+    }
 }

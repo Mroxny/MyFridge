@@ -36,7 +36,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/ic_fridge_icon"
+                android:background="@drawable/ic_round_default_icon"
                 android:theme="@style/Button" />
             <Button
                 android:id="@+id/icon2"
@@ -71,7 +71,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="35dp"
         android:layout_toEndOf="@+id/wi2"
-        android:src="@drawable/ic_fridge_icon"
+        android:src="@drawable/ic_round_default_icon"
         app:tint="?attr/colorSecondary" />
 
 </RelativeLayout>

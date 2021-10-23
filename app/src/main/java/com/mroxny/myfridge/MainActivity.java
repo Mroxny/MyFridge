@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
     }
 
     private void addProduct(String name, int icon) {
-        products.add(new Product(name,icon));
+        products.add(new Product(name,icon,products.size()+1));
         saveProducts();
         addProductsToViewport();
     }

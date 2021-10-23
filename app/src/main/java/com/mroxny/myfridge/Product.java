@@ -14,9 +14,10 @@ public class Product {
     @Expose private int imageResource;
     @Expose private String category;
 
-    public Product (String name, int iconResource){
+    public Product (String name, int iconResource,int id){
         setName(name);
         setImageResource(iconResource);
+        setId(id);
     }
 
     public void setId(int idNumber){

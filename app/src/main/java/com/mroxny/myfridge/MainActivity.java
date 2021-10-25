@@ -85,6 +85,13 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
         }
     }
 
+    public void deleteProduct(int i){
+        products.remove(i);
+        mAdapter.notifyItemRemoved(i);
+        saveProducts();
+        //addProductsToViewport();
+    }
+
     private void openAddProductDialog(){
         AddProductDialog productDialog = new AddProductDialog();
         productDialog.show(getSupportFragmentManager(),"product dialog");

@@ -23,6 +23,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         private Button inc;
         private Button dec;
 
+
         public ProductViewHolder(View itemView) {
             super(itemView);
             icon = itemView.findViewById(R.id.imageView);
@@ -49,7 +50,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.name.setText(correctName(currentItem.getName()));
         holder.amount.setText(String.valueOf(currentItem.getAmount()));
 
-        setButtons(holder,currentItem);
+        setButtons(holder,currentItem, position);
 
     }
     @Override
@@ -69,7 +70,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return name;
     }
 
-    private void setButtons(ProductViewHolder holder, Product currentItem){
+    private void setButtons(ProductViewHolder holder, Product currentItem, int pos){
 
         holder.inc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,8 +83,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.dec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentItem.decrementAmount();
-                holder.amount.setText(String.valueOf(currentItem.getAmount()));
+                if(currentItem.getAmount()>1){
+                    currentItem.decrementAmount();
+                    holder.amount.setText(String.valueOf(currentItem.getAmount()));
+                }
+                else{
+                    //MainActivity ma = new MainActivity();
+                    //ma.deleteProduct(pos);
+                }
+
             }
         });
     }

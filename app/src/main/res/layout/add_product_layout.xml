@@ -43,13 +43,27 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/ic_round_add" />
+                android:background="@drawable/ic_bottle" />
             <Button
                 android:id="@+id/icon3"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/ic_round_add_product"
+                android:background="@drawable/ic_egg"
+                android:theme="@style/Button" />
+            <Button
+                android:id="@+id/icon4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_wege"
+                android:theme="@style/Button" />
+            <Button
+                android:id="@+id/icon5"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_chicken"
                 android:theme="@style/Button" />
 
         </LinearLayout>

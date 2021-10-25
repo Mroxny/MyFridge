@@ -9,9 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 
 public class AddProductDialog extends AppCompatDialogFragment implements View.OnClickListener {
@@ -20,6 +24,7 @@ public class AddProductDialog extends AppCompatDialogFragment implements View.On
     private int image = 0;
     private ProductDialogListener listener;
     private View view;
+    private ArrayList<Button> buttons = new ArrayList<>();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -65,13 +70,14 @@ public class AddProductDialog extends AppCompatDialogFragment implements View.On
     }
 
     private void setUpIcons(){
-        Button b1 = (Button) view.findViewById(R.id.icon1);
-        b1.setOnClickListener(this);
-        Button b2 = (Button) view.findViewById(R.id.icon2);
-        b2.setOnClickListener(this);
-        Button b3 = (Button) view.findViewById(R.id.icon3);
-        b3.setOnClickListener(this);
-
+        int buttonsNum = 5;
+        for(int i = 1;i<=buttonsNum; i++){
+            String name = "icon"+i;
+            int resId = getResId(name, R.id.class);
+            Button b = (Button) view.findViewById(resId);
+            buttons.add(b);
+            buttons.get(i-1).setOnClickListener(this);
+        }
     }
 
     @Override
@@ -82,12 +88,19 @@ public class AddProductDialog extends AppCompatDialogFragment implements View.On
                 icon = R.drawable.ic_round_default_icon;
                 break;
             case R.id.icon2:
-                icon = R.drawable.ic_round_add;
+                icon = R.drawable.ic_bottle;
                 break;
             case R.id.icon3:
-                icon = R.drawable.ic_round_add_product;
+                icon = R.drawable.ic_egg;
+                break;
+            case R.id.icon4:
+                icon = R.drawable.ic_wege;
+                break;
+            case R.id.icon5:
+                icon = R.drawable.ic_chicken;
                 break;
         }
+
         image = icon;
         setTempIcon(icon);
     }
@@ -111,5 +124,15 @@ public class AddProductDialog extends AppCompatDialogFragment implements View.On
 
     public interface ProductDialogListener {
         void applyTexts(String name, int icon);
+    }
+    public static int getResId(String resName, Class<?> c) {
+
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 }

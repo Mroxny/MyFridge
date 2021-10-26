@@ -1,10 +1,13 @@
 package com.mroxny.myfridge;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -85,12 +88,7 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
         }
     }
 
-    public void deleteProduct(int i){
-        products.remove(i);
-        mAdapter.notifyItemRemoved(i);
-        saveProducts();
-        //addProductsToViewport();
-    }
+
 
     private void openAddProductDialog(){
         AddProductDialog productDialog = new AddProductDialog();
@@ -110,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
             mRecyclerView.setHasFixedSize(true);
             mLayoutManager = new LinearLayoutManager(this);
 
-            mAdapter = new ProductAdapter(products);
+            mAdapter = new ProductAdapter(products,this);
             mRecyclerView.setLayoutManager(mLayoutManager);
             mRecyclerView.setAdapter(mAdapter);
         }
@@ -146,5 +144,31 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
     protected void onPause() {
         super.onPause();
         saveProducts();
+    }
+
+    public void deleteProduct(int i){
+        final Dialog dialog = new Dialog(MainActivity.this);
+        //We have added a title in the custom layout. So let's disable the default title.
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
+        dialog.setCancelable(true);
+        //Mention the name of the layout of your custom dialog.
+        dialog.setContentView(R.layout.remove_product_dialog_layout);
+
+        //Initializing the views of the dialog.
+        Button submitButton = dialog.findViewById(R.id.button_yes);
+
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                products.remove(i);
+                mAdapter.notifyItemRemoved(i);
+                saveProducts();
+                addProductsToViewport();
+            }
+        });
+
+        dialog.show();
     }
 }

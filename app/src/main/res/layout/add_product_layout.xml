@@ -26,47 +26,8 @@
         android:layout_below="@+id/wi"
         android:layout_marginTop="15dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+        <include layout="@layout/icons_buttons_layout"/>
 
-            <Button
-                android:id="@+id/icon1"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/ic_round_default_icon"
-                android:theme="@style/Button" />
-            <Button
-                android:id="@+id/icon2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/ic_bottle" />
-            <Button
-                android:id="@+id/icon3"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/ic_egg"
-                android:theme="@style/Button" />
-            <Button
-                android:id="@+id/icon4"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/ic_wege"
-                android:theme="@style/Button" />
-            <Button
-                android:id="@+id/icon5"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/ic_chicken"
-                android:theme="@style/Button" />
-
-        </LinearLayout>
     </ScrollView>
 
     <TextView

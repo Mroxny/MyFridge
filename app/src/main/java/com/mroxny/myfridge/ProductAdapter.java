@@ -1,5 +1,6 @@
 package com.mroxny.myfridge;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private ArrayList<Product> mExampleList;
+    public Context context;
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView icon;
@@ -33,8 +35,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             dec = itemView.findViewById(R.id.remove_button);
         }
     }
-    public ProductAdapter(ArrayList<Product> exampleList) {
+    public ProductAdapter(ArrayList<Product> exampleList, Context context) {
         mExampleList = exampleList;
+        this.context = context;
     }
 
     @Override
@@ -88,8 +91,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     holder.amount.setText(String.valueOf(currentItem.getAmount()));
                 }
                 else{
-                    //MainActivity ma = new MainActivity();
-                    //ma.deleteProduct(pos);
+                    MainActivity ma = (MainActivity) context;
+                    ma.deleteProduct(pos);
                 }
 
             }

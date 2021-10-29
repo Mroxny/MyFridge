@@ -93,6 +93,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 else{
                     MainActivity ma = (MainActivity) context;
                     ma.deleteProduct(pos);
+                    currentItem.setAmount(0);
+                    holder.amount.setText(String.valueOf(currentItem.getAmount()));
                 }
 
             }

@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
 
         //Initializing the views of the dialog.
         Button submitButton = dialog.findViewById(R.id.button_yes);
-
+        Button dismissButton = dialog.findViewById(R.id.button_no);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,6 +166,13 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
                 mAdapter.notifyItemRemoved(i);
                 saveProducts();
                 addProductsToViewport();
+                dialog.dismiss();
+            }
+        });
+        dismissButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
 

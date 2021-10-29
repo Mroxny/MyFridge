@@ -22,7 +22,7 @@
         android:gravity="center"
         android:text="Brak Produktów"
         android:textColor="?attr/colorSecondary"
-        android:textSize="75sp"
+        android:textSize="40sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

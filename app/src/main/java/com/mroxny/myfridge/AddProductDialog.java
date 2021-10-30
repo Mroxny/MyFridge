@@ -37,14 +37,14 @@ public class AddProductDialog extends AppCompatDialogFragment implements View.On
         setUpIcons();
 
         builder.setView(view)
-                .setTitle("Dodaj Produkt")
-                .setNegativeButton("anuluj", new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.UI_add_product))
+                .setNegativeButton(getString(R.string.UI_cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
                 })
-                .setPositiveButton("dodaj", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.UI_add), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String name = editTextName.getText().toString();

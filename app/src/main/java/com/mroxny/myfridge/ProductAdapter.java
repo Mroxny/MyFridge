@@ -64,12 +64,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private String correctName(String name){
         if (name != null && name.length()>0){
             name = name.replace("\n", "").replace("\r", "");
-            if(name.length()>15){
-                name = name.substring(0,14) + "...";
+            if(name.length()>17){
+                name = name.substring(0,16) + "...";
             }
             return name;
         }
-        name = "Nieznany proukt";
         return name;
     }
 

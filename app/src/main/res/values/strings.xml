@@ -1,6 +1,21 @@
 <resources>
-    <string name="app_name">MyFridge</string>
-    <string name="title_activity_fullscreen">FullscreenActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="app_name" translatable="false">MyFridge</string>
+    <string name="title_activity_fullscreen" translatable="false">FullscreenActivity</string>
+    <string name="dummy_button" translatable="false">Dummy Button</string>
+    <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
+    <string name="UI_no_products">No products</string>
+    <string name="UI_unknown_product_name">Unknown</string>
+    <string name="UI_cancel">Cancel</string>
+    <string name="UI_add">Add</string>
+    <string name="UI_yes">Yes</string>
+    <string name="UI_no">No</string>
+    <string name="UI_delete_product">Do you want to remove this product?</string>
+    <string name="UI_add_product">Add Product</string>
+    <string name="UI_add_product_name">Name</string>
+    <string name="UI_add_product_select_icon">Select an icon</string>
+    <string name="UI_add_product_selected_icon">Selected icon: </string>
+
+
+
+
 </resources>

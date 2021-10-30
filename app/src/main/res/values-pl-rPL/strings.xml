@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="UI_no_products">Brak produktów</string>
+    <string name="UI_unknown_product_name">Nieznany produkt</string>
+    <string name="UI_cancel">Anuluj</string>
+    <string name="UI_add">Dodaj</string>
+    <string name="UI_yes">Tak</string>
+    <string name="UI_no">Nie</string>
+    <string name="UI_delete_product">Czy chcesz usunąć ten produkt?</string>
+    <string name="UI_add_product">Dodaj produkt</string>
+    <string name="UI_add_product_name">Nazwa</string>
+    <string name="UI_add_product_select_icon">Wybierz ikonę</string>
+    <string name="UI_add_product_selected_icon">Wybrana ikona: </string>
+</resources>

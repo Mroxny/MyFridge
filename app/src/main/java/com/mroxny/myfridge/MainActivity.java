@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
             name = name.replace("\n", "").replace("\r", "");
             return name;
         }
-        name = "Nieznany proukt";
+        name = getString(R.string.UI_unknown_product_name);
         return name;
     }
 

@@ -16,6 +16,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     private ArrayList<Product> mExampleList;
     public Context context;
+
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView icon;
@@ -26,13 +37,25 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         private Button dec;
 
 
-        public ProductViewHolder(View itemView) {
+        public ProductViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             icon = itemView.findViewById(R.id.imageView);
             name = itemView.findViewById(R.id.textView);
             amount = itemView.findViewById(R.id.textView2);
             inc = itemView.findViewById(R.id.add_button);
             dec = itemView.findViewById(R.id.remove_button);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
     public ProductAdapter(ArrayList<Product> exampleList, Context context) {
@@ -43,7 +66,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_item, parent, false);
-        ProductViewHolder pvh = new ProductViewHolder(v);
+        ProductViewHolder pvh = new ProductViewHolder(v, mListener);
         return pvh;
     }
     @Override
@@ -86,6 +109,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             @Override
             public void onClick(View view) {
                 if(currentItem.getAmount()>1){
+
                     currentItem.decrementAmount();
                     holder.amount.setText(String.valueOf(currentItem.getAmount()));
                 }

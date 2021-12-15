@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:isScrollContainer="true">
 
     <Button
         android:id="@+id/icon1"
@@ -37,6 +38,47 @@
         android:layout_height="30dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/ic_chicken"
+        android:theme="@style/Button" />
+    <Button
+        android:id="@+id/icon6"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/ic_steak" />
+    <Button
+        android:id="@+id/icon7"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/ic_cheese"
+        android:theme="@style/Button" />
+    <Button
+        android:id="@+id/icon8"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/ic_salad"
+        android:theme="@style/Button" />
+    <Button
+        android:id="@+id/icon9"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/ic_ketchup"
+        android:theme="@style/Button" />
+    <Button
+        android:id="@+id/icon10"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/ic_ketchup"
+        android:theme="@style/Button" />
+    <Button
+        android:id="@+id/icon11"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/ic_ketchup"
         android:theme="@style/Button" />
 
 </LinearLayout>

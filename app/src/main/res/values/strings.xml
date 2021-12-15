@@ -9,13 +9,15 @@
     <string name="UI_add">Add</string>
     <string name="UI_yes">Yes</string>
     <string name="UI_no">No</string>
+    <string name="UI_back">Back</string>
+    <string name="UI_save">Save</string>
+    <string name="UI_saved">Saved</string>
     <string name="UI_delete_product">Do you want to remove this product?</string>
     <string name="UI_add_product">Add Product</string>
     <string name="UI_add_product_name">Name</string>
     <string name="UI_add_product_select_icon">Select an icon</string>
     <string name="UI_add_product_selected_icon">Selected icon: </string>
-
-
+    <string name="UI_amount">Amount</string>
 
 
 </resources>

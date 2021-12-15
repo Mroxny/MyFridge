@@ -6,9 +6,13 @@
     <string name="UI_add">Dodaj</string>
     <string name="UI_yes">Tak</string>
     <string name="UI_no">Nie</string>
+    <string name="UI_back">Cofnij</string>
+    <string name="UI_save">Zapisz</string>
+    <string name="UI_saved">Zapisano zmiany</string>
     <string name="UI_delete_product">Czy chcesz usunąć ten produkt?</string>
     <string name="UI_add_product">Dodaj produkt</string>
     <string name="UI_add_product_name">Nazwa</string>
     <string name="UI_add_product_select_icon">Wybierz ikonę</string>
     <string name="UI_add_product_selected_icon">Wybrana ikona: </string>
+    <string name="UI_amount">Liczba</string>
 </resources>

@@ -26,6 +26,7 @@
         android:layout_below="@+id/wi"
         android:layout_marginTop="15dp">
 
+
         <include layout="@layout/icons_buttons_layout"/>
 
     </ScrollView>

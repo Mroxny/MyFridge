@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.annotations.Expose;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
     @Expose private String id;
     @Expose private String name;
@@ -14,13 +16,13 @@ public class Product {
     @Expose private int imageResource;
     @Expose private String category;
 
-    public Product (String name, int iconResource,int id){
+    public Product (String name, int iconResource,long id){
         setName(name);
         setImageResource(iconResource);
         setId(id);
     }
 
-    public void setId(int idNumber){
+    public void setId(long idNumber){
         this.id = "id:"+idNumber;
     }
 

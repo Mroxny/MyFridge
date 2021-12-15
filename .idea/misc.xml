@@ -16,15 +16,26 @@
         <entry key="..\:/Program Files (x86)/Android/MyFridge/app/src/main/res/layout/add_product_layout.xml" value="0.266304347826087" />
         <entry key="..\:/Program Files (x86)/Android/MyFridge/app/src/main/res/layout/product_item.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/custom_border.xml" value="0.2703125" />
+        <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_bottle.xml" value="0.2703125" />
+        <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_cheese.xml" value="0.2703125" />
+        <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_chicken.xml" value="0.2703125" />
+        <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_egg.xml" value="0.2703125" />
         <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_fridge_icon.xml" value="0.2703125" />
+        <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_ketchup.xml" value="0.2703125" />
         <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_round_add.xml" value="0.2703125" />
+        <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_round_add_product.xml" value="0.2703125" />
         <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_round_default_icon.xml" value="0.2703125" />
         <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_round_remove_product.xml" value="0.2703125" />
+        <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_salad.xml" value="0.2703125" />
+        <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_steak.xml" value="0.2703125" />
         <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_test.xml" value="0.2703125" />
+        <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/drawable/ic_wege.xml" value="0.2703125" />
         <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/layout/activity_product.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/layout/add_product_layout.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/layout/icons_buttons_layout.xml" value="0.22780797101449277" />
+        <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/layout/product_item.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/maciu/AndroidStudioProjects/MyFridge/app/src/main/res/layout/remove_product_dialog_layout.xml" value="0.22826086956521738" />
       </map>
     </option>

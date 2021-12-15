@@ -70,7 +70,7 @@ public class AddProductDialog extends AppCompatDialogFragment implements View.On
     }
 
     private void setUpIcons(){
-        int buttonsNum = 5;
+        int buttonsNum = 9;
         for(int i = 1;i<=buttonsNum; i++){
             String name = "icon"+i;
             int resId = getResId(name, R.id.class);
@@ -98,6 +98,18 @@ public class AddProductDialog extends AppCompatDialogFragment implements View.On
                 break;
             case R.id.icon5:
                 icon = R.drawable.ic_chicken;
+                break;
+            case R.id.icon6:
+                icon = R.drawable.ic_steak;
+                break;
+            case R.id.icon7:
+                icon = R.drawable.ic_cheese;
+                break;
+            case R.id.icon8:
+                icon = R.drawable.ic_salad;
+                break;
+            case R.id.icon9:
+                icon = R.drawable.ic_ketchup;
                 break;
         }
 

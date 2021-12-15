@@ -2,6 +2,7 @@ package com.mroxny.myfridge;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
 
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private ProductAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private FloatingActionButton addProductButton;
     private TextView noProductsSign;
@@ -40,9 +45,6 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         mRecyclerView = findViewById(R.id.recyclerView);
         noProductsSign = findViewById(R.id.no_products_sign);
@@ -55,9 +57,31 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
             }
         });
 
+
+
         loadProducts();
+
+        if(getIntent().getSerializableExtra("Product")!=null){
+            Product tempProd = (Product) getIntent().getSerializableExtra("Product");
+            editProducts(tempProd);
+        }
+
         addProductsToViewport();
 
+    }
+
+    private void editProducts(Product product){
+        int i = 0;
+        boolean found=false;
+        while(!found){
+            if(products.get(i).getId().equals(product.getId())) found = true;
+            else {
+                found = false;
+                i++;
+            }
+        }
+        products.set(i,product);
+        saveProducts();
     }
 
 
@@ -75,19 +99,28 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
         editor.apply();
     }
 
-    private void loadProducts(){
+    private void loadProducts() {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE);
-        Set<String> set = prefs.getStringSet(SHARED_PREFS_PRODUCTS_KEY,null);
+        Set<String> set = prefs.getStringSet(SHARED_PREFS_PRODUCTS_KEY, null);
         Gson gson = gsonMaker();
 
         products.clear();
-        if(set!=null) {
+        if (set != null) {
             for (String e : set) {
                 products.add(gson.fromJson(e, Product.class));
             }
         }
+        sortArrayList(products);
     }
 
+    private void sortArrayList(ArrayList<Product> products) {
+        Collections.sort(products, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return o1.getId().compareToIgnoreCase(o2.getId());
+            }
+        });
+    }
 
 
     private void openAddProductDialog(){
@@ -97,7 +130,10 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
     }
 
     private void addProduct(String name, int icon) {
-        products.add(new Product(name,icon,products.size()+1));
+        Date time = Calendar.getInstance().getTime();
+        long id=time.getTime();
+
+        products.add(new Product(name,icon,id));
         saveProducts();
         addProductsToViewport();
     }
@@ -111,6 +147,16 @@ public class MainActivity extends AppCompatActivity implements AddProductDialog.
             mAdapter = new ProductAdapter(products,this);
             mRecyclerView.setLayoutManager(mLayoutManager);
             mRecyclerView.setAdapter(mAdapter);
+
+            mAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    Intent intent = new Intent(MainActivity.this, ProductActivity.class);
+                    intent.putExtra("Product",products.get(position));
+                    startActivity(intent);
+                    finish();
+                }
+            });
         }
         else {
             noProductsSign.setVisibility(View.VISIBLE);
